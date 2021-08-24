@@ -1,0 +1,13 @@
+#allProducts{
+  display: grid;
+  
+}
+#leftProduct{
+  width: 300px;
+}
+#centerProduct{
+  width: 300px;
+}
+#rightProduct{
+  width: 300px;
+}
