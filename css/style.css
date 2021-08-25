@@ -1,13 +1,18 @@
-#allProducts{
+body{
   display: grid;
   
 }
-#leftProduct{
+#allProducts{
+  display: flex;
+  flex-direction: row;
+  
+}
+#leftProductImg{
   width: 300px;
 }
-#centerProduct{
+#centerProductImg{
   width: 300px;
 }
-#rightProduct{
+#rightProductImg{
   width: 300px;
 }

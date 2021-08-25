@@ -13,6 +13,8 @@ const centerProductPElem = document.getElementById('centerProductP');
 const rightProductImgElem = document.getElementById('rightProductImg');
 const rightProductPElem = document.getElementById('rightProductP');
 const allProductsSectionElem = document.getElementById('allProducts');
+const resultsElem = document.getElementById('resultsElem');
+const buttonElem = document.getElementById('buttonElem');
 
 
 function Product(name, image){
@@ -34,25 +36,30 @@ Product.prototype.renderSingleProduct = function(img, p){
 
 
 function randomProducts(){
+const unavailableProducts = [leftProduct, rightProduct, centerProduct];
+
+  while(unavailableProducts.includes(leftProduct)){
   let leftIndex = Math.floor(Math.random() * Product.allProducts.length);
-
   leftProduct = Product.allProducts[leftIndex];
-
-  let rightIndex;
-
-  while(rightIndex === undefined || rightIndex === leftIndex){
-    rightIndex = Math.floor(Math.random() * Product.allProducts.length);
   }
 
-  rightProduct = Product.allProducts[rightIndex];
+  unavailableProducts.push(leftProduct);
+  //let rightIndex;
 
-  let centerIndex;
+  while(unavailableProducts.includes(rightProduct)){
+    let rightIndex = Math.floor(Math.random() * Product.allProducts.length);
+    rightProduct = Product.allProducts[rightIndex];
+  }
+  
+  unavailableProducts.push(rightProduct);
+  //let centerIndex;
 
-  while(centerIndex === undefined || centerIndex === leftIndex || centerIndex === rightIndex){
-    centerIndex = Math.floor(Math.random() * Product.allProducts.length);
+  while(unavailableProducts.includes(centerProduct)){
+    let centerIndex = Math.floor(Math.random() * Product.allProducts.length);
+    centerProduct = Product.allProducts[centerIndex];
   }
 
-  centerProduct = Product.allProducts[centerIndex];
+  
 
   renderThreeProducts(leftProduct, centerProduct, rightProduct);
 }
@@ -82,17 +89,26 @@ function clickHandler(event){
     }
     if(rounds === 0){
       allProductsSectionElem.removeEventListener('click', clickHandler);
-
+      alert('Survey complete! Thank you!')
+      return;
       //here is where I think we should add a button 'view results' to display the results. 
       //it should be a function that displays the button after the rounds have reached zero.
       //it will add an event listener for the clicking of the button
       //the even listener function will call render results.
-      renderResults();
+      
     }
     randomProducts();
   }
 }
 
+function resultsClickHandler(event){
+  if(event.target === buttonElem && rounds === 0){
+    renderResults();
+  }
+  else{
+    alert('Please finish the survey!')
+  }
+}
 
 function renderResults(){
   const ulElem = document.getElementById('productClicks');
@@ -100,13 +116,14 @@ function renderResults(){
 
   for(let product of Product.allProducts){
     const liElem = document.createElement('li');
-    liElem.textContent = `${product.name}: ${product.votes}`;
+    liElem.textContent = `${product.name} had ${product.votes} votes, and was seen ${product.timesShown} times.`;
     ulElem.appendChild(liElem);
   }
 }
 
 
 allProductsSectionElem.addEventListener('click', clickHandler);
+resultsElem.addEventListener('click', resultsClickHandler)
 
 
 Product.allProducts.push(new Product('Bag', './img/bag.jpg'));
