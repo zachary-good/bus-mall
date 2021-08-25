@@ -119,8 +119,46 @@ function renderResults(){
     liElem.textContent = `${product.name} had ${product.votes} votes, and was seen ${product.timesShown} times.`;
     ulElem.appendChild(liElem);
   }
+  renderChart();
 }
 
+function renderChart(){
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Bag', 'Banana', 'Bathroom', 'Boots', 'Breakfast', 'Bubblegum','Chair','Cthulhu','Dog-duck','Dragon','Pen','Pet-sweep','Scissors','Shark','Sweep','Tauntaun','Unicorn','Water-can','Wine-glass'],
+          datasets: [{
+              label: '# of Votes',
+              data: [Product.allProducts[0].votes,Product.allProducts[1].votes,Product.allProducts[2].votes,Product.allProducts[3].votes,Product.allProducts[4].votes,Product.allProducts[5].votes,Product.allProducts[6].votes,Product.allProducts[7].votes,Product.allProducts[8].votes,Product.allProducts[9].votes,Product.allProducts[10].votes,Product.allProducts[11].votes,Product.allProducts[12].votes,Product.allProducts[13].votes,Product.allProducts[14].votes,Product.allProducts[15].votes,Product.allProducts[16].votes,Product.allProducts[17].votes,Product.allProducts[18].votes],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+}
 
 allProductsSectionElem.addEventListener('click', clickHandler);
 resultsElem.addEventListener('click', resultsClickHandler)
