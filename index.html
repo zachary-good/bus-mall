@@ -13,55 +13,52 @@
   </head>
   <body>
     <header>
-      <section id = "resultsElem">
-        <h2>Click Results</h2>
-        <ul id = "productClicks">
-          <li>Bag: 0</li>
-          <li>Banana: 0</li>
-          <li>Bathroom: 0</li>
-          <li>Boots: 0</li>
-          <li>Breakfast: 0</li>
-          <li>Bubblegum: 0</li>
-          <li>Chair: 0</li>
-          <li>Cthulhu: 0</li>
-          <li>Dog-duck: 0</li>
-          <li>Dragon: 0</li>
-          <li>Pen: 0</li>
-          <li>Pet-sweep: 0</li>
-          <li>Scissors: 0</li>
-          <li>Shark: 0</li>
-          <li>Sweep: 0</li>
-          <li>Tauntaun: 0</li>
-          <li>Unicorn: 0</li>
-          <li>Water-can: 0</li>
-          <li>Wine-glass: 0</li>
-        </ul>
-        <button type = "button" id = "buttonElem">View Results</button>
-      </section>
+      <h1>The bus mall product survey</h1>
     </header>
-    <main>
-      
-      <section id = "allProducts">
-        <div id = "leftProduct">
-          <img id = "leftProductImg" src="./img/bag.jpg" alt="bag">
-          <p id = "leftProductP">Bag</p>
-        </div>
-        <div id = "centerProduct">
-          <img id = "centerProductImg" src="./img/banana.jpg" alt="banana">
-          <p id = "centerProductP">Banana</p>
-        </div>
-        <div id = "rightProduct">
-          <img id = "rightProductImg" src="./img/bathroom.jpg" alt="bathroom">
-          <p id = "rightProductP">Bathroom</p>
-        </div>
-      </section>
-      <div>
-        <canvas id="myChart"></canvas>
+    <section id = "resultsElem">
+      <h2>Click Results</h2>
+      <ul id = "productClicks">
+        <li>Bag: 0</li>
+        <li>Banana: 0</li>
+        <li>Bathroom: 0</li>
+        <li>Boots: 0</li>
+        <li>Breakfast: 0</li>
+        <li>Bubblegum: 0</li>
+        <li>Chair: 0</li>
+        <li>Cthulhu: 0</li>
+        <li>Dog-duck: 0</li>
+        <li>Dragon: 0</li>
+        <li>Pen: 0</li>
+        <li>Pet-sweep: 0</li>
+        <li>Scissors: 0</li>
+        <li>Shark: 0</li>
+        <li>Sweep: 0</li>
+        <li>Tauntaun: 0</li>
+        <li>Unicorn: 0</li>
+        <li>Water-can: 0</li>
+        <li>Wine-glass: 0</li>
+      </ul>
+      <button type = "button" id = "buttonElem">View Results</button>
+    </section>
+    <section id = "allProducts">
+      <div id = "leftProduct">
+        <img id = "leftProductImg" src="./img/bag.jpg" alt="bag">
+        <p id = "leftProductP">Bag</p>
       </div>
-      
-    </main>
+      <div id = "centerProduct">
+        <img id = "centerProductImg" src="./img/banana.jpg" alt="banana">
+        <p id = "centerProductP">Banana</p>
+      </div>
+      <div id = "rightProduct">
+        <img id = "rightProductImg" src="./img/bathroom.jpg" alt="bathroom">
+        <p id = "rightProductP">Bathroom</p>
+      </div>
+    </section>
+    <div id = "chart">
+      <canvas id="myChart"></canvas>
+    </div>
     <footer>
-
+      <p>footer</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/app.js"></script>

@@ -17,11 +17,11 @@ const resultsElem = document.getElementById('resultsElem');
 const buttonElem = document.getElementById('buttonElem');
 
 
-function Product(name, image){
+function Product(name, image, timesShown = 0, votes = 0){
   this.name = name;
   this.image = image;
-  this. timesShown = 0;
-  this.votes = 0;
+  this.timesShown = timesShown;
+  this.votes = votes;
 }
 
 
@@ -33,6 +33,7 @@ Product.prototype.renderSingleProduct = function(img, p){
   p.textContent = this.name;
   this.timesShown++;
 }
+
 
 
 function randomProducts(){
@@ -105,8 +106,9 @@ function resultsClickHandler(event){
   if(event.target === buttonElem && rounds === 0){
     renderResults();
   }
+  
   else{
-    alert('Please finish the survey!')
+    alert('Please finish the survey!');
   }
 }
 
@@ -120,6 +122,7 @@ function renderResults(){
     ulElem.appendChild(liElem);
   }
   renderChart();
+  storeProducts();
 }
 
 function renderChart(){
@@ -160,10 +163,32 @@ function renderChart(){
   });
 }
 
+function getProductsFromStorage(){
+  const stringifiedProducts = localStorage.getItem('products');
+  if(stringifiedProducts){
+    const parsedProducts = JSON.parse(stringifiedProducts);
+    console.log(parsedProducts);
+    for(let product of parsedProducts){
+      const myProduct = new Product(product.name, product.image, product.timesShown, product.votes);
+      Product.allProducts.push(myProduct);
+    }
+  }
+  
+}
+
+function storeProducts(){
+  const stringifiedProducts = JSON.stringify(Product.allProducts);
+  localStorage.setItem('products', stringifiedProducts)
+}
+
 allProductsSectionElem.addEventListener('click', clickHandler);
 resultsElem.addEventListener('click', resultsClickHandler)
 
 
+if(localStorage.getItem('products')){
+  getProductsFromStorage();
+}
+else{
 Product.allProducts.push(new Product('Bag', './img/bag.jpg'));
 Product.allProducts.push(new Product('Banana', './img/banana.jpg'));
 Product.allProducts.push(new Product('Bathroom', './img/bathroom.jpg'));
@@ -183,5 +208,6 @@ Product.allProducts.push(new Product('Tauntaun', './img/tauntaun.jpg'));
 Product.allProducts.push(new Product('Unicorn', './img/unicorn.jpg'));
 Product.allProducts.push(new Product('Water-can', './img/water-can.jpg'));
 Product.allProducts.push(new Product('Wine-glass', './img/wine-glass.jpg'));
+}
 
 randomProducts();
