@@ -1,5 +1,5 @@
 'use strict';
-
+//------------------global variables-------------------//
 let rounds = 25;
 let centerProduct = null;
 let rightProduct = null;
@@ -16,7 +16,7 @@ const allProductsSectionElem = document.getElementById('allProducts');
 const resultsElem = document.getElementById('resultsElem');
 const buttonElem = document.getElementById('buttonElem');
 
-
+//---------------------creates product object-------------------------//
 function Product(name, image, timesShown = 0, votes = 0){
   this.name = name;
   this.image = image;
@@ -24,10 +24,10 @@ function Product(name, image, timesShown = 0, votes = 0){
   this.votes = votes;
 }
 
-
+// creates and array of all products
 Product.allProducts = [];
 
-
+// function that renders the product to the screen and increments the time shown
 Product.prototype.renderSingleProduct = function(img, p){
   img.src = this.image;
   p.textContent = this.name;
@@ -35,7 +35,8 @@ Product.prototype.renderSingleProduct = function(img, p){
 }
 
 
-
+//----------------------functions to complete actions-----------------------//
+//generates random products without repeats
 function randomProducts(){
 const unavailableProducts = [leftProduct, rightProduct, centerProduct];
 
@@ -65,14 +66,14 @@ const unavailableProducts = [leftProduct, rightProduct, centerProduct];
   renderThreeProducts(leftProduct, centerProduct, rightProduct);
 }
 
-
+// uses the single product render to render three products at once
 function renderThreeProducts(leftProduct, centerProduct, rightProduct){
   leftProduct.renderSingleProduct(leftProductImgElem, leftProductPElem);
   centerProduct.renderSingleProduct(centerProductImgElem, centerProductPElem);
   rightProduct.renderSingleProduct(rightProductImgElem, rightProductPElem);
 }
 
-
+//function to hand the click even on the different images
 function clickHandler(event){
   console.log(event.target);
 
@@ -102,6 +103,7 @@ function clickHandler(event){
   }
 }
 
+// function to respond to click of the view results button
 function resultsClickHandler(event){
   if(event.target === buttonElem && rounds === 0){
     renderResults();
@@ -112,6 +114,7 @@ function resultsClickHandler(event){
   }
 }
 
+// function to render results at the end of the survey
 function renderResults(){
   const ulElem = document.getElementById('productClicks');
   ulElem.innerHTML = '';
@@ -125,6 +128,7 @@ function renderResults(){
   storeProducts();
 }
 
+//chart.js rendering, displays data in a graphical manner
 function renderChart(){
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
@@ -163,6 +167,7 @@ function renderChart(){
   });
 }
 
+// retrieves the product array from storage
 function getProductsFromStorage(){
   const stringifiedProducts = localStorage.getItem('products');
   if(stringifiedProducts){
@@ -176,15 +181,17 @@ function getProductsFromStorage(){
   
 }
 
+// stores the results of the survey
 function storeProducts(){
   const stringifiedProducts = JSON.stringify(Product.allProducts);
   localStorage.setItem('products', stringifiedProducts)
 }
 
+//add the event listeners for the click of products and the view results button
 allProductsSectionElem.addEventListener('click', clickHandler);
 resultsElem.addEventListener('click', resultsClickHandler)
 
-
+// if statement to check if a database aleady exists and for initial launch instates all the products. 
 if(localStorage.getItem('products')){
   getProductsFromStorage();
 }

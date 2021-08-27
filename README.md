@@ -1,11 +1,6 @@
-LAB - Number
-Project Name
-I build an app with a direct and powerful purpose. It does all of the things that it accomplishes well. I should describe the purpose and functionality so those that visit my README understand the app
+LAB - 15
+Bus Mall Project
+I built this app that is a survey of a companies products that they have. this survey displays a series of three products for the consumer to choose between. the items are randomly generated and the totals of both clicks and times displayed are tracked to report to the client which products were the most desirable to the customers. 
 
-Author: Student/Group Name
-Links and Resources
-submission PR
-Any Links you used as reference
-Reflections and Comments
-Consider including the answers to your daily journal and submission questions here
-This is also a good place to reflect on the tools and resources used and learned
+Author: Zachary Good
+github.com/zachary-good
